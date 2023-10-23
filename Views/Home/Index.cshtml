@@ -1,0 +1,368 @@
+﻿@model HomeViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>E-Civil Registry|السجل المدني الالكتروني</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- css -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300,700,800" rel="stylesheet" media="screen">
+
+    <link href="~/main/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="~/main/css/style.css" rel="stylesheet" media="screen">
+    <link href="~/main/color/default.css" rel="stylesheet" media="screen">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;400;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@1&family=El+Messiri&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kufam&family=Reem+Kufi&display=swap" rel="stylesheet">
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="~/main/img/phar2.png" />
+
+    <!-- =======================================================
+      Theme Name: Alstar
+      Theme URL: https://bootstrapmade.com/alstar-free-parallax-bootstrap-template/
+      Author: BootstrapMade.com
+      Author URL: https://bootstrapmade.com
+    ======================================================= -->
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle nav</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <partial name="_LoginPartial" />
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <a asp-action="Edit" asp-controller="Account" asp-route-id="@UserManager.GetUserId(User)" class="navbar-brand page-scroll sticky-logo" style="margin-right: 30px;background-color: RGBA(0,146,194,1);border-radius: 50%;padding: 5px;line-height: 30px;width: 60px;height: 50px;color: #fff;font-weight: 600;font-size: 20px;text-transform: uppercase;font-family: 'Tajawal', sans-serif;">
+                        <div class="dropdown profile" id="profile">
+                            <div class="dropbtn">
+                                <p>
+                                    @UserManager.GetUserAsync(User).Result.FirstName.First().ToString().ToUpper() @UserManager.GetUserAsync(User).Result.LastName.First().ToString().ToUpper()
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                }
+                else
+                {
+                    <a class="navbar-brand page-scroll sticky-logo">
+                        <div class="dropdown profile" id="profile">
+                            <div class="dropbtn">
+                                <p>
+
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                }
+                <!-- Logo text or image -->
+                <a class="navbar-brand" href="index.html"><span>E</span>-Civil Registry</a>
+            </div>
+            <div class="navigation collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#contact">اتصل بنا</a></li>
+                    <li><a href="#services">الخدمات</a></li>
+
+                    <li><a href="#about">نبذه عنا</a></li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="current"><a asp-action="Index" asp-controller="Home" asp-route-id="@UserManager.GetUserId(User)">الرئيسية</a></li>
+                    }
+                    else
+                    {
+                        <li class="current"><a href="#intro">الرئيسية</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--Slider-->
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/main/img/bgslides/1.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block" style="margin-bottom:450px;">
+                    <h1 style="color:white;" class="1strotate">السجل المدني الالكتروني</h1>
+                    <div class="line-spacer"></div>
+                    <p class="2ndrotate" style="font-size:20px;"> خدمتك تسعدنا....,حفاظا علي التباعد الاجتماعي في ظل ظروف كوفيد-19, توفيرا لوقتك ووقت عائلتك</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Slider-->
+    <!-- About -->
+    <section id="about" class="home-section bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8">
+                    <div class="section-heading">
+                        <h2>نبذه عنا</h2>
+                        <div class="heading-line"></div>
+                        <p>.لقد عملنا على بناء منتجات ومنصات وتجارب رقمية فريدة ف ظل ازمة كورونا </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row wow fadeInUp">
+                <div class="col-md-6 about-img">
+                    <img src="~/main/img/abo.jpg" alt="">
+                </div>
+
+                <div class="col-md-6 content">
+                    <h2>لقد عملنا على بناء منتجات ومنصات وتجارب رقمية فريدة ف ظل ازمة كورونا</h2>
+                    <p>
+                        ف ظل توجهات السيد رئيس الجمهورية ف رقمنة جميع الانظمة الحكومية
+                        فقد سعينا للعمل علي سجل مدني الكتروني يساعد المواطنين علي حل الأزمات
+                        مثل مشكلة الازدحام او جائحة كورونا
+                        لذالك نسعي جاهدين لخدمتكم
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax 1 -->
+    <section id="parallax1" class="home-section parallax" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="color-light">
+                        <h2 class="wow bounceInDown" data-wow-delay="0.5s">التحول الرقمي هو زيادة الكفاءة في خط سير العمل</h2>
+                        <p class="lead wow bounceInUp" data-wow-delay="1s">بحيث تقل الأخطاء وتزيد الإنتاجية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="home-section bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8">
+                    <div class="section-heading">
+                        <h2>الخدمات</h2>
+                        <div class="heading-line"></div>
+                        <p>لقد قمنا ببناء خدمات لتسهيل عملية التسجيل وتوفير للوقت </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="carousel-service" class="service carousel slide">
+
+                        <!-- slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-offset-1 col-md-6">
+                                        <div class="wow bounceInLeft">
+                                            <h4>بطاقة الرقم القومي</h4>
+                                            <ol class="info">
+                                                <li>استخراج اول مرة</li>
+                                                <li>تجديد</li>
+                                                <li>بدل تالف</li>
+                                            </ol>
+                                            <ul style="text-align:right;">
+                                                <li style="font-size:17px; font-weight:600; color:#7118c8;list-style-type:none;">يمكنك تتبع الطلب في اي وقت</li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-12 col-md-5">
+                                        <div class="screenshot wow bounceInRight">
+                                            <img src="~/main/img/card2.png" class="img-responsive" alt="" style="width: 400" />
+                                        </div>
+                                    </div>
+
+                                    <a asp-action="Index" asp-controller="Order" asp-route-id="@UserManager.GetUserId(User)" class="btn btn-primary stretched-link more">المزيد</a>
+
+
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-offset-1 col-md-6">
+                                        <div class="wow bounceInLeft">
+                                            <h4>شهادة الميلاد</h4>
+                                            <ol class="info">
+                                                <li>شهادة ميلاد اول مرة</li>
+                                                <li>شهادة ميلاد متكررة</li>
+                                                <li>شهادة ميلاد مترجمة</li>
+                                            </ol>
+                                            <ul style="text-align:right;">
+                                                <li style="font-size:17px; font-weight:600; color:#7118c8;list-style-type:none;">يمكنك تتبع الطلب في اي وقت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-5">
+                                        <div class="screenshot wow bounceInRight">
+                                            <img src="~/main/img/bir4.png" class="img-responsive" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    <a asp-action="BirthCertificate" asp-controller="OrderBC" asp-route-id="@UserManager.GetUserId(User)" class="btn btn-primary stretched-link more">المزيد</a>
+
+                            </div>
+                        </div>
+
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-service" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-service" data-slide-to="1"></li>
+                            <!--<li data-target="#carousel-service" data-slide-to="2"></li>-->
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="parallax2" class="home-section parallax" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="clients">
+                        <li class="wow fadeInDown" data-wow-delay="0.3s"><a href="#"><p class="in1">اوراقك </p></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.6s"><a href="#"><p class="in2">هتخلص </p></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.9s"><a href="#"><p class="in3">وانت في </p></a></li>
+
+                        <li class="wow fadeInDown" data-wow-delay="1.1s"><a href="#"><p class="in4">بيتك</p></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    @await Html.PartialAsync("ContactUsPartial")
+
+    <!-- Bottom widget -->
+    <section id="bottom-widget" class="home-section bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-widget wow bounceInLeft">
+                        <i class="fa fa-map-marker fa-4x"></i>
+                        <h5>العنوان الرئيسي</h5>
+                        <p>
+                            , القاهرة<br />العاصمة الادارية
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="contact-widget wow bounceInRight">
+                        <i class="fa fa-envelope fa-4x"></i>
+                        <h5>ارسل لنا عبر البريد الإلكتروني</h5>
+                        <p>
+                            governmentinterests508@gmail.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mar-top30">
+                <div class="col-md-12">
+                    <h5>نحن على الشبكات الاجتماعية</h5>
+                    <ul class="social-network">
+                        <li>
+                            <a href="https://www.facebook.com/">
+                                <span class="fa-stack fa-2x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/">
+                                <span class="fa-stack fa-2x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/?lang=ar">
+                                <span class="fa-stack fa-2x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://web.telegram.org/#/login">
+                                <span class="fa-stack fa-2x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        &copy; Copyright <strong><span>2021 government interests</span></strong>. All Rights Reserved
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- js -->
+    <script src="~/main/js/jquery.js"></script>
+    <script src="~/main/js/bootstrap.min.js"></script>
+    <script src="~/main/js/wow.min.js"></script>
+    <script src="~/main/js/mb.bgndGallery.js"></script>
+    <script src="~/main/js/mb.bgndGallery.effects.js"></script>
+    <script src="~/main/js/jquery.simple-text-rotator.min.js"></script>
+    <script src="~/main/js/jquery.scrollTo.min.js"></script>
+    <script src="~/main/js/jquery.nav.js"></script>
+    <script src="~/main/js/modernizr.custom.js"></script>
+    <script src="~/main/js/grid.js"></script>
+    <script src="~/main/js/stellar.js"></script>
+    <!-- Contact Form JavaScript File -->
+    <script src="contactform/contactform.js"></script>
+
+    <!-- Template Custom Javascript File -->
+    <script src="~/main/js/custom.js"></script>
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</body>
+</html>

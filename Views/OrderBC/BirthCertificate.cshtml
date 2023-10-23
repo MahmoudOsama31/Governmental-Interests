@@ -1,0 +1,432 @@
+﻿@model BirthcertificateViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>E-Civil Registry|السجل المدني الالكتروني</title>
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;400;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@1&family=El+Messiri&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kufam&family=Reem+Kufi&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/certi/css/all.min.css">
+    <link rel="stylesheet" href="~/certi/css/default.css">
+    <link rel="stylesheet" href="~/certi/css/animate.css">
+
+    <link rel="stylesheet" href="~/certi/assets1/css/overwrite.css">
+    <link rel="stylesheet" href="~/certi/assets1/css/simpletextrotator.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+    <link rel="icon" type="image/png" href="~/certi/img/phar2.png" />
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="~/certi/css/bootstrap.min.css" />
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="~/certi/css/style.css" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle nav</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- Logo text or image -->
+                <a class="navbar-brand" href="index.html"><span>E</span>-Civil Registry</a>
+
+            </div>
+            <div class="navigation collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li><a asp-action="Index" asp-controller="Home" asp-route-id="@UserManager.GetUserId(User)">اتصل بنا</a></li>
+                    }
+                    else
+                    {
+                        <li><a>اتصل بنا</a></li>
+                    }
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li><a asp-action="Index" asp-controller="Home" asp-route-id="@UserManager.GetUserId(User)">الخدمات</a></li>
+                    }
+                    else
+                    {
+                        <li><a>الخدمات</a></li>
+                    }
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li><a asp-action="Index" asp-controller="Home" asp-route-id="@UserManager.GetUserId(User)">نبذه عنا</a></li>
+                    }
+                    else
+                    {
+                        <li><a>نبذه عنا</a></li>
+                    }
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="current"><a asp-action="Index" asp-controller="Home" asp-route-id="@UserManager.GetUserId(User)">الرئيسية</a></li>
+                    }
+                    else
+                    {
+                        <li class="current"><a href="#intro">الرئيسية</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="booking" class="section">
+        <div class="section-center">
+            <div class="container">
+                @if (ViewBag.Certi == false)
+                {
+                    <div class="row">
+                        <div class="booking-form">
+                            <div style="border:none; box-shadow:10px 10px 8px #888888;" class="booking-bg"></div>
+                            <div style=" position: absolute; border-radius:5px; left: 0px; top: 650px; bottom: 0px; width: 250px; height: 280px;border:1px solid #ccc;box-shadow:5px 5px 8px blue,10px 10px 8px red,15px 15px 8px green; background-color:#eee;" class="notes">
+                                <ul style="font-size:18px; padding-top:10px;">
+                                    <li style="color:red;">
+                                        عدم ادخال اي صوره غير صور الارشادات :
+                                    </li>
+                                    <li style="color:blue;list-style-type:none;">
+                                        <ul style="font-size:15px; color:#000;">
+                                            <li> الصوره الاولي <span style="color:red;">=></span> صوره شخصيه خلفيه بيضاء</li>
+                                            <li> الصوره الثانيه <span style="color:red;">=></span> صوره للضامن من الدرجه الاولي</li>
+                                        </ul>
+                                    </li>
+                                    <li style="color:blue;list-style-type:none;">
+                                        <ul style="font-size:15px; color:#000;">
+                                            <li><span style="color:red; font-size:25px;">*</span>الصور لايزيد حجمها عن 3 ميجا</li>
+                                        </ul>
+                                    </li>
+                                    @*<li style="color:blue;list-style-type:none;">
+                                        <ul style="font-size:15px; color:#000;">
+                                            <li> الصوره الاولي <span style="color:red;">=></span> صوره شخصيه خلفيه بيضاء</li>
+                                            <li>الصوره الثانيه <span style="color:red;">=></span> صورة محضر فقد البطاقه </li>
+                                        </ul>
+                                    </li>*@
+                                </ul>
+                            </div>
+                            <form method="post" asp-action="BirthCertificate" asp-controller="OrderBC" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div style="margin-top:50px;" class="form-header">
+                                            <h2>ارسال طلب شهادة الميلاد</h2>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <span class="form-label">اسم الام</span>
+                                            <input asp-for="birthcertificate.MotherName" class="form-control" required>
+                                            <span asp-validation-for="birthcertificate.MotherName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <span class="form-label">الاسم بالكامل</span>
+                                            <input asp-for="birthcertificate.FullName" class="form-control" required>
+                                            <span asp-validation-for="birthcertificate.FullName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="birthcertificate.Kind" class="form-label">النوع</label>
+                                            <select required id="SecondDropdown" asp-for="birthcertificate.Kind" class="form-control" asp-items="new SelectList(ViewBag.kind)">
+                                                <option value="">النوع</option>
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                            <span asp-validation-for="birthcertificate.Kind" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="birthcertificate.Religion" class="form-label">الديانه</label>
+                                            <select required id="govern" asp-for="birthcertificate.Religion" class="form-control" asp-items="new SelectList(ViewBag.Religion)">
+                                                <option value="">الديانه</option>
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                            <span asp-validation-for="birthcertificate.Religion" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="birthcertificate.BirthDate" class="form-label">تاريخ الميلاد</label>
+                                            <input type="date" asp-for="birthcertificate.BirthDate" class="form-control" required>
+                                            <span asp-validation-for="birthcertificate.BirthDate" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <span class="form-label">البريد الالكتروني</span>
+                                            <input asp-for="birthcertificate.Email" class="form-control" required>
+                                            <span asp-validation-for="birthcertificate.Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <span class="form-label">العنوان بالكامل</span>
+                                            <input asp-for="birthcertificate.Address" class="form-control" required>
+                                            <span asp-validation-for="birthcertificate.Address" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <span class="form-label">تليفون المنزل</span>
+                                            <input asp-for="birthcertificate.HomePhone" class="form-control" required>
+                                            <span asp-validation-for="birthcertificate.HomePhone" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <span class="form-label">تليفون المحمول</span>
+                                            <input asp-for="birthcertificate.MobilePhone" class="form-control" required>
+                                            <span asp-validation-for="birthcertificate.MobilePhone" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="note">
+                                            <p style="font-size:20px; text-align:center; color:blue;"><span style="color:red;">*</span>عنوان مقدم الطلب الذي سيتم تسليم الطلب عليه</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <span class="form-label">المحافظة</span>
+                                            <select required asp-for="birthcertificate.Governorate" class="form-control" asp-items="new SelectList(ViewBag.governorate2)">
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                            <span asp-validation-for="birthcertificate.Governorate" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <span class="form-label">عدد النسخ</span>
+                                            <select required asp-for="birthcertificate.NumberOfCopies" class="form-control" asp-items="new SelectList(ViewBag.Copies)">
+                                                <option value="">اختر عدد النسخ</option>
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                            <span asp-validation-for="birthcertificate.NumberOfCopies" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="note">
+                                            <p style="font-size:20px; color:blue;"><span style="color:red;">*</span>بيانات الوثيقة المطلوبة</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <span class="form-label">درجة القرابة لمقدم الطلب</span>
+                                            <select required asp-for="birthcertificate.DegreeOfKinship" class="form-control" asp-items="new SelectList(ViewBag.DegreeOfKinship)">
+                                                <option value="">اختر درجة القرابه</option>
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                            <span asp-validation-for="birthcertificate.DegreeOfKinship" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <span class="form-label">العائلة</span>
+                                            <input asp-for="birthcertificate.FamilyName" class="form-control" required>
+                                            <span asp-validation-for="birthcertificate.FamilyName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <span class="form-label">الجد</span>
+                                            <input asp-for="birthcertificate.GrandpaName" class="form-control" required>
+                                            <span asp-validation-for="birthcertificate.GrandpaName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <span class="form-label">الاب</span>
+                                            <input asp-for="birthcertificate.FatherName" class="form-control" required>
+                                            <span asp-validation-for="birthcertificate.FatherName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <span class="form-label">الاسم الاول</span>
+                                            <input asp-for="birthcertificate.FirstName" class="form-control" required>
+                                            <span asp-validation-for="birthcertificate.FirstName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <span class="form-label">الرقم القومي</span>
+                                            <input asp-for="birthcertificate.CardId" class="form-control" required>
+                                            <span asp-validation-for="birthcertificate.CardId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <span class="form-label">طريقة الدفع</span>
+                                            <select required asp-for="birthcertificate.PaymentType" class="form-control" asp-items="new SelectList(ViewBag.paymentType)">
+                                                <option value="">اختر طريقة الدفع</option>
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                            <span asp-validation-for="birthcertificate.PaymentType" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <span class="form-label">الصورة الثانيه</span>
+                                            <input asp-for="photo1" class="form-control" type="file" required>
+                                            <span asp-validation-for="photo1" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <span class="form-label">الصورة الاولي</span>
+                                            <input asp-for="photo2" class="form-control" type="file" required>
+                                            <span asp-validation-for="photo2" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <span class="form-label">ملاحظات</span>
+                                    <textarea asp-for="birthcertificate.Notes" class="form-control" placeholder=""></textarea>
+                                </div>
+                                <div class="form-btn">
+                                    <button class="submit-btn">ارسال</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        <div style="border-bottom:none;" class="first-form">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div style="text-align:center;">
+                                        <img style="width:200px;height:200px; margin-top:100px;" src="~/card/img/order-tracking.png" />
+                                    </div>
+                                </div>
+                            </div>
+                            <form method="post" asp-action="SearchBC" asp-controller="OrderBC">
+                                <div class="form-header">
+                                    <h2>قم بتتبع الطلب لشهادة الميلاد الخاص بك<p><span class="not">*</span> قم بارسال طلبك اولا <span class="not">*</span></p></h2>
+                                </div>
+                                <div style="margin-bottom:50px;" class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <button class="follow" type="submit"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input asp-for="Search" class="form-control" placeholder="ادخل رقم الهويه الخاصه بتتبع الطلب">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="text-align:center;">
+                        &copy; Copyright <strong><span>2021 government interests</span></strong>. All Rights Reserved
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/certi/js/popper.min.js"></script>
+    <script src="~/certi/js/jquery-3.5.0.min.js"></script>
+    <script src="~/certi/js/jquery.js"></script>
+    <script src="~/certi/js/jquery.nav.js"></script>
+    <script src="~/certi/js/jquery.nav.js"></script>
+    <script src="~/certi/js/jquery.scrollTo.min.js"></script>
+    <script src="~/certi/js/jquery.simple-text-rotator.min.js"></script>
+    <script src="~/certi/js/bootstrap.min.js"></script>
+
+    <script src="~/certi/js/contactform.js"></script>
+    <script src="~/certi/js/grid.js"></script>
+    <script src="~/certi/js/mb.bgndGallery.effects.js"></script>
+    <script src="~/certi/js/mb.bgndGallery.js"></script>
+    <script src="~/certi/js/modernizr.custom.js"></script>
+    <script src="~/certi/js/stellar.js"></script>
+    <script src="~/certi/js/wow.min.js"></script>
+
+    <script src="~/certi/js/main2.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>

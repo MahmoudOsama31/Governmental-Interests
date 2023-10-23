@@ -1,0 +1,78 @@
+﻿@model MarriageCertificate
+@{
+Layout = null;
+}
+<!doctype html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Snippet - BBBootstrap</title>
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+    <script type='text/javascript'></script>
+    <link rel="stylesheet" href="~/asset10/style.css" />
+</head>
+<body oncontextmenu='return false' class='snippet-body'>
+    <div class="container-fluid my-5 d-sm-flex justify-content-center">
+        <div class="card px-2">
+            <div class="card-header bg-white">
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <p class="text-muted" style="text-align:right;">رقم الطلب :<span class="font-weight-bold text-dark">@ViewBag.id</span></p>
+                        <p class="text-muted" style="text-align:right;">تاريخ الطلب : <span class="font-weight-bold text-dark">@ViewBag.Date</span></p>
+                        <p class="text-muted" style="text-align:right;"> نوع الخدمه : <span class="font-weight-bold text-dark">@ViewBag.orderType</span></p>
+                        <p class="text-muted" style="text-align:right;">الاسم: <span class="font-weight-bold text-dark">@ViewBag.name</span></p>
+                        <p class="text-muted" style="text-align:right;"><span class="font-weight-bold text-dark">@ViewBag.payment</span> :طريقة الدفع</p>
+                        <p class="text-muted" style="text-align:right;"> العنوان الخاص بك: <span class="font-weight-bold text-dark">@ViewBag.address</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="media flex-column flex-sm-row">
+                    <div class="media-body ">
+                    </div><img class="align-self-center img-fluid" src="~/assets6/img/download.jpg" width="180 " height="180">
+                </div>
+                @if (ViewBag.ispaid == true && ViewBag.confirmed == false && ViewBag.MC == false)
+                {
+                    <div class="row px-3">
+                        <div class="col">
+                            <ul id="progressbar">
+                                <li class="step0 active " id="step1">ارسال الطلب</li>
+                                <li class="step0 text-muted text-center" id="step2">معالجة الطلب</li>
+                                <li class="step0 text-muted text-right" id="step3">تم التوصيل</li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+                else if (ViewBag.MC == true && ViewBag.confirmed == false)
+                {
+                    <div class="row px-3">
+                        <div class="col">
+                            <ul id="progressbar">
+                                <li class="step0 active" id="step1">ارسال الطلب</li>
+                                <li class="step0 active text-center" id="step2">معالجة الطلب</li>
+                                <li class="step0 text-muted text-right" id="step3">تم التوصيل</li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+                else if (ViewBag.confirmed == true)
+                {
+                    <div class="row px-3">
+                        <div class="col">
+                            <ul id="progressbar">
+                                <li class="step0 active " id="step1">ارسال الطلب</li>
+                                <li class="step0 active text-center" id="step2">معالجة الطلب</li>
+                                <li class="step0 active text-right" id="step3">تم التوصيل</li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+
+            </div>
+    </div>
+</body>
+</html>

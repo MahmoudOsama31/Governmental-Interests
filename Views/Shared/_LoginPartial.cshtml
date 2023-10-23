@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using GI.Models
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<ul style="list-style-type:none;" class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item">
+        <form id="logoutForm" class="form-inline"asp-action="Logout" asp-controller="Account" >
+            <button id="logout" type="submit" class="nav-link btn btn-link" style="color:#3a3a3a;font-family:'Tajawal,sans-serif';font-size:20px; margin-left:-900px; text-decoration:none;"><img style="width:30px; height:30px;" src="~/asset10/image/log-out.png" /></button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a style="text-decoration:none; margin-left:-750px;" class="nav-link text-dark" id="register" asp-action="Register" asp-controller="Account"><img style="width:20px; height:20px;" src="~/asset10/image/add-user.png"  />انشاء حساب</a>
+    </li>
+    <hr/>
+    <li class="nav-item">
+        <a style="text-decoration:none; margin-left:-750px;" class="nav-link text-dark" id="login" asp-action="Login" asp-controller="Account" ><img style="width:20px; height:20px;" src="~/asset10/image/login.png" />تسجيل دخول</a>
+    </li>
+}
+</ul>

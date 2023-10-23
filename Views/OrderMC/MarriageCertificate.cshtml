@@ -1,0 +1,257 @@
+﻿@model MarriageCertificateViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>المصالح الحكومية</title>
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;400;900&display=swap" rel="stylesheet">
+
+
+
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+    <link rel="icon" type="image/png" href="~/assets6/img/logo2.jpg" />
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="~/assets6/css/bootstrap.min.css" />
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="~/assets6/css/style.css" />
+
+
+</head>
+
+<body>
+    <div id="booking" class="section">
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="first-form">
+                        <form method="post" asp-action="SearchMC" asp-controller="OrderMC">
+                            <div class="form-header">
+                                <h2>قم بتتبع الطلب لوثيقة الجواز الخاص بك<p><span class="not">*</span> قم بارسال طلبك اولا <span class="not">*</span></p></h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <button class="follow" type="submit"><i class="fa fa-search">تتبع طلبك</i></button>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input asp-for="Search" class="form-control"  placeholder="ادخل رقم الهويه الخاصه بتتبع الطلب" >
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="booking-form">
+                        <div class="booking-bg">
+                            <div class="inn">
+                                <h2>شروط استخراج شهادات الزواج المميكنة:</h2>
+                                <ol>
+                                    <li>يجب ان تكون وثيقة الزواج مطبوعه سابقا</li>
+                                    <li>يجب كتابة بيانات الزوج والزوجة <span>*</span> ثلاثي - رباعي<span>*</span></li>
+                                    <li>ان يكون تاريخ الزواج بعد ابريل سنة 1962</li>
+                                    <li>يجب ان يكون مقدم الطلب هو صاحب الشأن</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <form method="post" asp-action="MarriageCertificate" asp-controller="OrderMC">
+                            <div class="form-header">
+                                <h2>ارسال طلبك</h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">اسم الام</span>
+                                        <input asp-for="marriageCertificate.FirstMotherName" class="form-control">
+                                        <span asp-validation-for="marriageCertificate.FirstMotherName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">الاسم بالكامل</span>
+                                        <input asp-for="marriageCertificate.FullName" class="form-control">
+                                        <span asp-validation-for="marriageCertificate.FullName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <span class="form-label">البريد الالكتروني</span>
+                                        <input asp-for="marriageCertificate.Email" class="form-control">
+                                        <span asp-validation-for="marriageCertificate.Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">تليفون المنزل</span>
+                                        <input asp-for="marriageCertificate.HomePhone" class="form-control">
+                                        <span asp-validation-for="marriageCertificate.HomePhone" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">تليفون المحمول</span>
+                                        <input asp-for="marriageCertificate.MobilePhone" class="form-control">
+                                        <span asp-validation-for="marriageCertificate.MobilePhone" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="add"><span>*</span> عنوان مقدم الطلب الذي سيتم ارسال الطلب عليه</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <span class="form-label">العنوان بالتفصيل</span>
+                                        <input asp-for="marriageCertificate.Address" class="form-control">
+                                        <span asp-validation-for="marriageCertificate.Address" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <span class="form-label">عدد النسخ</span>
+                                        <select asp-for="marriageCertificate.NumberOfCopies" class="form-control" asp-items="new SelectList(ViewBag.Copies)">
+                                            <option value=""> اختر عدد النسخ...</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                        <span asp-validation-for="marriageCertificate.NumberOfCopies" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <span class="form-label">المنطقه</span>
+                                        <select asp-for="marriageCertificate.region" class="form-control" asp-items="new SelectList(ViewBag.region)">
+                                            <option value=""> المنطقه...</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                        <span asp-validation-for="marriageCertificate.region" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <span class="form-label">المحافظة</span>
+                                        <select asp-for="marriageCertificate.Governorate" class="form-control" asp-items="new SelectList(ViewBag.governorate3)">
+                                            <option value=""> المحافظه...</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                        <span asp-validation-for="marriageCertificate.Governorate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="note">
+                                        <p><span>*</span>بيانات الوثيقة المطلوبة</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <span class="form-label">العائلة</span>
+                                        <input asp-for="marriageCertificate.FamilyName" class="form-control">
+                                        <span asp-validation-for="marriageCertificate.FamilyName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <span class="form-label">الجد</span>
+                                        <input asp-for="marriageCertificate.GrandpaName" class="form-control">
+                                        <span asp-validation-for="marriageCertificate.GrandpaName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <span class="form-label">الاب</span>
+                                        <input asp-for="marriageCertificate.FatherName" class="form-control">
+                                        <span asp-validation-for="marriageCertificate.FatherName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <span class="form-label">الاسم الاول</span>
+                                        <input asp-for="marriageCertificate.FirstName" class="form-control">
+                                        <span asp-validation-for="marriageCertificate.FirstName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <span class="form-label">اسم الام</span>
+                                        <input asp-for="marriageCertificate.SecondMotherName" class="form-control">
+                                        <span asp-validation-for="marriageCertificate.SecondMotherName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <span class="form-label">الرقم القومي</span>
+                                        <input asp-for="marriageCertificate.CardId" class="form-control">
+                                        <span asp-validation-for="marriageCertificate.CardId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <span class="form-label">الزوج / الزوجة</span>
+                                        <input asp-for="marriageCertificate.HusbandOrwifeName" class="form-control">
+                                        <span asp-validation-for="marriageCertificate.HusbandOrwifeName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <span class="form-label">طريقة الدفع</span>
+                                        <select asp-for="marriageCertificate.PaymentType" class="form-control" asp-items="new SelectList(ViewBag.paymentType)">
+                                            <option value="">اختر طريقة الدفع</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                        <span asp-validation-for="marriageCertificate.PaymentType" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="form-label">ملاحظات</span>
+                                <textarea asp-for="marriageCertificate.Notes" class="form-control" type="text" placeholder=""></textarea>
+                            </div>
+                            <div class="form-btn">
+                                <button class="submit-btn">ارسال</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/assets6/js/popper.min.js"></script>
+    <script src="~/assets6/js/jquery-3.5.0.min.js"></script>
+    <script src="~/assets6/js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
