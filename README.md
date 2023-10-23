@@ -1,1 +1,1 @@
-# GI
+# As a Full-Stack .NET Developer, I had the privilege of working on the "Governmental Interests" project, a comprehensive platform designed to streamline and modernize Civil Registry services. This critical government initiative aimed to improve citizen services, enhance data accuracy, and strengthen governmental efficiency. My contributions to this project were instrumental in achieving these goals.
